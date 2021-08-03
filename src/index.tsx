@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'katex/dist/katex.min.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
