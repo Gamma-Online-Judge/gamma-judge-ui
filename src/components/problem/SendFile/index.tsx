@@ -5,7 +5,7 @@ const SendFile = ({ onSubmit = () => { }, className = "" }: SendFileProps) => {
 
     const fileInput = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
     const [file, setFile] = useState<File | undefined>(undefined);
-    const [language, setLanguage] = useState<string>('');
+    const [language, setLanguage] = useState<string>('C');
 
 
     return (
@@ -19,12 +19,12 @@ const SendFile = ({ onSubmit = () => { }, className = "" }: SendFileProps) => {
 
             <h4> Send your code </h4>
 
-            <label> Language </label>
+            <label> Language:</label>
             <Form.Select
                 className="mv1 w-100"
                 aria-label="Default select example"
                 size="sm"
-                onSubmit={(e: any) => setLanguage(e.target.value)}>
+                onChange={(e: any) => setLanguage(e.target.value)}>
                 <option value="c">C</option>
                 <option value="c++">C++</option>
                 <option value="python">Python</option>

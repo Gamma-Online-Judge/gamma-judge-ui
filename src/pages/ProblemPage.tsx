@@ -23,6 +23,12 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
             })
     }, [match.params.problemId]);
 
+    const onSubmitQuestion = (language: string, file: File | undefined) => {
+        console.log('File submitted');
+        console.log(language);
+        console.log(file)
+    }
+
     return (
         <div>
             <Header />
@@ -62,9 +68,7 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
                         <LatexParagraph text={notes} />
                     </div>
                     <div className="col-2 mh5" >
-                        <SendFile
-                            onSubmit={() => { }}
-                        />
+                        <SendFile onSubmit={onSubmitQuestion} />
                         <hr />
                         <div>
                             <h4> Help </h4>
