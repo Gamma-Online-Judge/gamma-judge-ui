@@ -7,7 +7,7 @@ const ProblemStatement = ({ statement }: ProblemStatementProps) => {
                 if (line.startsWith('\\image')) {
                     const image_url = line.slice('\\image'.length).trim()
                     return (
-                        <img src={image_url} alt="img" />
+                        <img key={key} src={image_url} alt="img" />
                     )
                 }
                 else {
