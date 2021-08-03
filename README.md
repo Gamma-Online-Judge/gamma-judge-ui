@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Requirements 
+
+### Node JS
+[Oficial site Node Js](https://nodejs.org/pt-br/)
+[Installing via terminal](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/)
+
+### Yarn 
+[Installing via terminal](https://linuxize.com/post/how-to-install-yarn-on-ubuntu-18-04/)
+
 ## Available Scripts
 
 In the project directory, you can run:
