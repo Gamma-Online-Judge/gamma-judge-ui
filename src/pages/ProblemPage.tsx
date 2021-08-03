@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Problem as ProblemModel } from '../models/Problem'
 import { getProblemAsync } from '../actions/problem';
-import { Table } from 'react-bootstrap'
+import { Table, Spinner } from 'react-bootstrap'
 import { RouteComponentProps } from 'react-router-dom';
 import Header from '../components/Header';
 import ProblemStatement from '../components/problem/ProblemStatement';
@@ -26,8 +26,11 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
     return (
         <div>
             <Header />
-            {(isFetching) ? null :
-                <div className="row justify-content-center">
+            {(isFetching) ?
+                <div className="flex justify-center">
+                    <Spinner animation="border" />
+                </div> :
+                <div className="row justify-center">
                     <div className="col-8">
                         <h1>{title}</h1>
                         <hr />
