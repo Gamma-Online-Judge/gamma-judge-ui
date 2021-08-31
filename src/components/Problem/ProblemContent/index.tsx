@@ -1,5 +1,4 @@
-import { Button, Card } from 'react-bootstrap';
-import Latex from 'react-latex-next'
+import { Card } from 'react-bootstrap';
 import ClipBoardButton from '../../ClipboadButton';
 
 const ProblemContent = ({ statement = "", className = "" }: ProblemContentProps) => {

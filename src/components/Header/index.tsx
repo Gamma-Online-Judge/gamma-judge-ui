@@ -1,6 +1,4 @@
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import Latex from 'react-latex-next'
-import { Link } from 'react-router-dom';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 const Header = () => {
     return (
