@@ -31,7 +31,7 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
             <Header />
             <div className="flex flex-row">
                 <ProblemContent className="w-two-thirds" />
-                <ProblemSideBar className="w-third" />
+                <ProblemSideBar problemId={match.params.problemId} className="w-third" />
             </div>
         </div>
     );

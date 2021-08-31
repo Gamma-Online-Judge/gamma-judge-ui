@@ -1,12 +1,18 @@
 import { useRef, useState } from 'react';
 import { Badge, Button, Form } from 'react-bootstrap'
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const ProblemSideBar = ({ onSubmit = () => { }, className = "" }: ProblemSideBarProps) => {
+
+const ProblemSideBar = ({ problemId, onSubmit = () => { }, className = "" }: ProblemSideBarProps) => {
 
     const [file, setFile] = useState<File | undefined>(undefined);
     const [language, setLanguage] = useState<string>('C');
+    const history = useHistory();
 
-
+    const goToTutorialPage = () => {
+        history.push(`/tutorial/${problemId}`);
+    }
     return (
         <div className={`${className} pa3`}>
             <Form onSubmit={() => onSubmit(language, file)}>
@@ -40,7 +46,11 @@ const ProblemSideBar = ({ onSubmit = () => { }, className = "" }: ProblemSideBar
             <hr className="" />
             <div>
                 <h3> Ajuda </h3>
-                <Button className="mt-3" variant="outline-success">
+                <Button
+                    className="mt-3"
+                    variant="outline-success"
+                    onClick={goToTutorialPage}
+                >
                     Tutorial
                 </Button>
             </div>
@@ -69,6 +79,7 @@ const ProblemSideBar = ({ onSubmit = () => { }, className = "" }: ProblemSideBar
 export default ProblemSideBar;
 
 type ProblemSideBarProps = {
+    problemId: string,
     className?: string,
     onSubmit?: (language: string, file: File | undefined) => void
 };

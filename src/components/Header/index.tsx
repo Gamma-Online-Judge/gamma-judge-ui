@@ -12,8 +12,8 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="#contests">Contests</Nav.Link>
-                    <Nav.Link href="#pricing">Problems</Nav.Link>
+                    <Nav.Link href="/contests">Contests</Nav.Link>
+                    <Nav.Link href="/problems">Problems</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
