@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
 
-const SendFile = ({ onSubmit = () => { }, className = "" }: SendFileProps) => {
+const ProblemSideBar = ({ onSubmit = () => { }, className = "" }: ProblemSideBarProps) => {
 
     const fileInput = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
     const [file, setFile] = useState<File | undefined>(undefined);
@@ -11,10 +11,10 @@ const SendFile = ({ onSubmit = () => { }, className = "" }: SendFileProps) => {
     return (
         <div className={`${className} mv2`}>
             {/* Invisible input component */}
-            <input 
-                className="dn" 
-                type="file" ref={fileInput} 
-                onChange={(e: any) => setFile(e.target.files[0])}        
+            <input
+                className="dn"
+                type="file" ref={fileInput}
+                onChange={(e: any) => setFile(e.target.files[0])}
             />
 
             <h4> Send your code </h4>
@@ -50,9 +50,9 @@ const SendFile = ({ onSubmit = () => { }, className = "" }: SendFileProps) => {
         </div>
     );
 }
-export default SendFile;
+export default ProblemSideBar;
 
-type SendFileProps = {
+type ProblemSideBarProps = {
     className?: string,
     onSubmit?: (language: string, file: File | undefined) => void
 };

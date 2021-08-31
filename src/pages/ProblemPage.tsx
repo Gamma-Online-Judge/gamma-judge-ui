@@ -4,9 +4,11 @@ import { getProblemAsync } from '../actions/problem';
 import { Table, Spinner } from 'react-bootstrap'
 import { RouteComponentProps } from 'react-router-dom';
 import Header from '../components/Header';
-import ProblemStatement from '../components/problem/ProblemStatement';
+import ProblemStatement from '../components/problem/ProblemContent';
 import LatexParagraph from '../components/LatexParagraph';
-import SendFile from '../components/problem/SendFile';
+import SendFile from '../components/problem/ProblemSideBar';
+import ProblemContent from '../components/problem/ProblemContent';
+import ProblemSideBar from '../components/problem/ProblemSideBar';
 
 
 const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
@@ -27,51 +29,10 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
     return (
         <div>
             <Header />
-            {(isFetching) ?
-                <div className="flex justify-center">
-                    <Spinner animation="border" />
-                </div> :
-                <div className="row justify-center">
-                    <div className="col-8">
-                        <h1>{title}</h1>
-                        <hr />
-                        <ProblemStatement statement={statement} />
-                        <h3>Input:</h3>
-                        <LatexParagraph text={input} />
-                        <h3>Output:</h3>
-                        <LatexParagraph text={output} />
-                        <h3>Samples:</h3>
-                        <Table striped bordered hover>
-                            <thead className="thead-dark">
-                                <tr>
-                                    <th scope="col">Input</th>
-                                    <th scope="col">Output</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    sampleInputs.map((sampleInput, key) =>
-                                        <tr key={key}>
-                                            <td>{sampleInput.input}</td>
-                                            <td>{sampleInput.output}</td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                        </Table>
-                        <hr />
-                        <LatexParagraph text={notes} />
-                    </div>
-                    <div className="col-2 mh5" >
-                        <SendFile onSubmit={onSubmitQuestion} />
-                        <hr />
-                        <div>
-                            <h4> Help </h4>
-                        </div>
-                    </div>
-                </div>
-            }
-
+            <div className="flex flex-row">
+                <ProblemContent className="w-two-thirds" />
+                <ProblemSideBar className="w-third" />
+            </div>
         </div>
     );
 }
