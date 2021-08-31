@@ -1,52 +1,68 @@
 import { useRef, useState } from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { Badge, Button, Form } from 'react-bootstrap'
 
 const ProblemSideBar = ({ onSubmit = () => { }, className = "" }: ProblemSideBarProps) => {
 
-    const fileInput = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
     const [file, setFile] = useState<File | undefined>(undefined);
     const [language, setLanguage] = useState<string>('C');
 
 
     return (
-        <div className={`${className} mv2`}>
-            {/* Invisible input component */}
-            <input
-                className="dn"
-                type="file" ref={fileInput}
-                onChange={(e: any) => setFile(e.target.files[0])}
-            />
+        <div className={`${className} pa3`}>
+            <Form onSubmit={() => onSubmit(language, file)}>
+                <h3> Envie seu código </h3>
+                <hr className="" />
+                <Form.Group>
+                    <Form.Label>Linguagem</Form.Label>
+                    <Form.Select
+                        className="mv1 w-100"
+                        aria-label="Default select example"
+                        size="sm"
+                        onChange={(e: any) => setLanguage(e.target.value)}>
+                        <option value="c">C</option>
+                        <option value="c++">C++</option>
+                        <option value="python">Python</option>
+                    </Form.Select>
+                </Form.Group>
 
-            <h4> Send your code </h4>
+                <Form.Group>
+                    <Form.Label>Código fonte</Form.Label>
+                    <Form.Control
+                        type="file"
+                        onChange={(e: any) => setFile(e.target.files[0])}
+                    />
+                </Form.Group>
 
-            <label> Language:</label>
-            <Form.Select
-                className="mv1 w-100"
-                aria-label="Default select example"
-                size="sm"
-                onChange={(e: any) => setLanguage(e.target.value)}>
-                <option value="c">C</option>
-                <option value="c++">C++</option>
-                <option value="python">Python</option>
-            </Form.Select>
+                <Button className="mt-3" variant="primary" type="submit">
+                    Enviar
+                </Button>
+            </Form>
+            <hr className="" />
+            <div>
+                <h3> Ajuda </h3>
+                <Button className="mt-3" variant="outline-success">
+                    Tutorial
+                </Button>
+            </div>
+            <hr className="" />
+            <div>
+                <h3> Tags </h3>
+                <div className="mt-3">
+                    <Badge pill bg="primary">
+                        DFS
+                    </Badge>{' '}
+                    <Badge pill bg="secondary">
+                        Grafo
+                    </Badge>{' '}
+                    <Badge pill bg="success">
+                        AD-Hoc
+                    </Badge>{' '}
+                    <Badge pill bg="danger">
+                        DP
+                    </Badge>{' '}
+                </div>
+            </div>
 
-            <Button
-                onClick={() => fileInput.current.click()}
-                className="mv1 w-100"
-                size="sm"
-                variant="outline-primary"
-            >
-                {file === undefined ? "Select file" : file.name}
-            </Button>
-
-            <Button
-                variant="primary"
-                className="mv1 w-100"
-                onClick={() => onSubmit(language, file)}
-                size="sm"
-            >
-                Send Code
-            </Button>
         </div>
     );
 }
