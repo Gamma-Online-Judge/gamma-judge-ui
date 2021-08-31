@@ -16,11 +16,6 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
 
     useEffect(() => {
         setFetching(false);
-        getProblemAsync(match.params.problemId)
-            .then(problemResponse => {
-                setProblem(problemResponse);
-                setFetching(false)
-            })
     }, [match.params.problemId]);
 
     const onSubmitQuestion = (language: string, file: File | undefined) => {

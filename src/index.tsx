@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 import 'katex/dist/katex.min.css'
 import './tachyons.min.css'
 import React from 'react';
