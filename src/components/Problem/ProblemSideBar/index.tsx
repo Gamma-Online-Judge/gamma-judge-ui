@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { Badge, Button, Form } from 'react-bootstrap'
 import { useHistory } from "react-router-dom";
+import { Problem } from '../../../models/Problem';
+import TagBadge from '../../TagBadge';
 
 
-const ProblemSideBar = ({ problemId, onSubmit = () => { }, className = "" }: ProblemSideBarProps) => {
+const ProblemSideBar = ({ problem, onSubmit = () => { }, className = "" }: ProblemSideBarProps) => {
 
     const [file, setFile] = useState<File | undefined>(undefined);
     const [language, setLanguage] = useState<string>('C');
     const history = useHistory();
 
     const goToTutorialPage = () => {
-        history.push(`/tutorial/${problemId}`);
+        history.push(`/tutorial/${problem.id}`);
     }
     return (
         <div className={`${className} pa3`}>
@@ -57,18 +59,9 @@ const ProblemSideBar = ({ problemId, onSubmit = () => { }, className = "" }: Pro
             <div>
                 <h3> Tags </h3>
                 <div className="mt-3">
-                    <Badge pill bg="primary">
-                        DFS
-                    </Badge>{' '}
-                    <Badge pill bg="secondary">
-                        Grafo
-                    </Badge>{' '}
-                    <Badge pill bg="success">
-                        AD-Hoc
-                    </Badge>{' '}
-                    <Badge pill bg="danger">
-                        DP
-                    </Badge>{' '}
+                    {
+                        problem.tags.map((tag, i) => <TagBadge tag={tag} key={i} />)
+                    }
                 </div>
             </div>
 
@@ -78,7 +71,7 @@ const ProblemSideBar = ({ problemId, onSubmit = () => { }, className = "" }: Pro
 export default ProblemSideBar;
 
 type ProblemSideBarProps = {
-    problemId: string,
+    problem: Problem,
     className?: string,
     onSubmit?: (language: string, file: File | undefined) => void
 };

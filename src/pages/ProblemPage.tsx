@@ -30,7 +30,7 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => 
                 />
                 <ProblemSideBar
                     onSubmit={onSubmitQuestion}
-                    problemId={match.params.problemId}
+                    problem={problem}
                     className="w-third"
                 />
             </div>

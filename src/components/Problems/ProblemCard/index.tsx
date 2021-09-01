@@ -1,6 +1,7 @@
 import { Badge, Button, Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { Problem } from "../../../models/Problem";
+import TagBadge from "../../TagBadge";
 
 const ProblemCard = ({ problem }: ProblemCardProps) => {
     const history = useHistory();
@@ -19,11 +20,8 @@ const ProblemCard = ({ problem }: ProblemCardProps) => {
                         <div className="mt-3">
                             Tags:{' '}
                             {
-                                problem.tags.map((tag, i) => 
-                                <Badge pill bg="primary" key={i} className="mh1">
-                                    {tag}
-                                </Badge>)
-                            }   
+                                problem.tags.map((tag, i) => <TagBadge tag={tag} key={i} />)
+                            }
                         </div>
                     </div>
 
