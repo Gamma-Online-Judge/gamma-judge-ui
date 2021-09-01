@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { Form } from "react-bootstrap";
+import { Form, Pagination } from "react-bootstrap";
+import { useHistory } from 'react-router-dom';
 import Header from "../components/Header";
+import ProblemCard from '../components/Problems/ProblemCard';
 
 const ProblemsPage = () => {
     const [searchText, setSearchText] = useState();
@@ -8,6 +10,7 @@ const ProblemsPage = () => {
         console.log(inp)
         console.log(searchText)
     }
+
     return (
         <div>
             <Header />
@@ -21,6 +24,13 @@ const ProblemsPage = () => {
                         />
                     </Form.Group>
                 </Form>
+            </div>
+            <div className="flex flex-wrap">
+                {
+                    ['1', '2', '1', '2', '1', '2', '1', '2', '1', '2'].map((problemId, i) =>
+                        <ProblemCard problemId={problemId} key={i} />
+                    )
+                }
             </div>
         </div>
     )
