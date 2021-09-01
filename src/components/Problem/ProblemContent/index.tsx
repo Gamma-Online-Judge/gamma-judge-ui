@@ -1,6 +1,4 @@
-import { Card } from 'react-bootstrap';
 import { Problem } from '../../../models/Problem';
-import ClipBoardButton from '../../ClipboadButton';
 import Latex from 'react-latex-next'
 import SampleInputCart from './SampleInputCard';
 
@@ -16,9 +14,7 @@ const ProblemContent = ({ problem, className = "" }: ProblemContentProps) => {
             )}
             <div className="mv3">
                 <h3> Notas </h3>
-                <p>
-                    Contrary to popular belief, Lorem Ipsum is not simply random text.
-                </p>
+                <p>{problem.notes}</p>
             </div>
         </div>
     )
