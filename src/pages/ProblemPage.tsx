@@ -7,7 +7,7 @@ import ProblemSideBar from '../components/Problem/ProblemSideBar';
 import { Problem } from '../models/Problem';
 
 
-const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
+const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => {
 
     const [problem, setProblem] = useState(new Problem({}))
     useEffect(() => {
@@ -39,4 +39,4 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemRouteParams>) => {
 }
 export default ProblemPage;
 
-type ProblemRouteParams = { problemId: string };
+type ProblemPageRouteParams = { problemId: string };

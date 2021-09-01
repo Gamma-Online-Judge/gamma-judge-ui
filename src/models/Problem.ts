@@ -9,6 +9,7 @@ export class Problem {
     this.notes = data.notes || "";
     this.contest = data.contest || ""
     this.tags = data.tags || []
+    this.tutorial = data.tutorial || ""
   }
   id: string;
   title: string;
@@ -18,7 +19,8 @@ export class Problem {
   sampleInputs: SampleInput[];
   notes: string;
   contest: string;
-  tags: string[]
+  tags: string[];
+  tutorial: string;
 }
 
 export class SampleInput {
