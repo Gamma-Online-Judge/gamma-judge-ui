@@ -1,34 +1,29 @@
 import { Badge, Button, Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { Problem } from "../../../models/Problem";
 
-const ProblemCard = ({ problemId }: ProblemCardProps) => {
+const ProblemCard = ({ problem }: ProblemCardProps) => {
     const history = useHistory();
 
     const goToProblemPage = () => {
-        history.push(`/problem/${problemId}`);
+        history.push(`/problem/${problem.id}`);
     }
 
     return (
         <a style={{ cursor: 'pointer' }} onClick={goToProblemPage}>
             <Card className="ma2">
-                <Card.Header as="h6">Título do problema</Card.Header>
+                <Card.Header as="h6">{problem.title}</Card.Header>
                 <Card.Body>
-                    <Card.Subtitle className="mb-2 text-muted">Contest do problema</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted">{problem.contest}</Card.Subtitle>
                     <div className="mv2">
                         <div className="mt-3">
                             Tags:{' '}
-                            <Badge pill bg="primary">
-                                DFS
-                            </Badge>{' '}
-                            <Badge pill bg="secondary">
-                                Grafo
-                            </Badge>{' '}
-                            <Badge pill bg="success">
-                                AD-Hoc
-                            </Badge>{' '}
-                            <Badge pill bg="danger">
-                                DP
-                            </Badge>{' '}
+                            {
+                                problem.tags.map((tag, i) => 
+                                <Badge pill bg="primary" key={i} className="mh1">
+                                    {tag}
+                                </Badge>)
+                            }   
                         </div>
                     </div>
 
@@ -40,5 +35,5 @@ const ProblemCard = ({ problemId }: ProblemCardProps) => {
 export default ProblemCard;
 
 export type ProblemCardProps = {
-    problemId: string
+    problem: Problem
 }

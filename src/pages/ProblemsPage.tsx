@@ -1,15 +1,20 @@
-import { useState } from 'react'
-import { Form, Pagination } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { Form } from "react-bootstrap";
+import { getAllProblems } from '../actions/problem';
 import Header from "../components/Header";
 import ProblemCard from '../components/Problems/ProblemCard';
 
 const ProblemsPage = () => {
     const [searchText, setSearchText] = useState();
+    const [problems, setProblems] = useState([]);
     const handleSearch = (inp: any) => {
         console.log(inp)
         console.log(searchText)
     }
+
+    useEffect(() => {
+        getAllProblems().then(problems => setProblems(problems))
+    })
 
     return (
         <div>
@@ -27,8 +32,8 @@ const ProblemsPage = () => {
             </div>
             <div className="flex flex-wrap">
                 {
-                    ['1', '2', '1', '2', '1', '2', '1', '2', '1', '2'].map((problemId, i) =>
-                        <ProblemCard problemId={problemId} key={i} />
+                    problems.map((problem, i) =>
+                        <ProblemCard problem={problem} key={i} />
                     )
                 }
             </div>

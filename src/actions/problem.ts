@@ -1,6 +1,6 @@
 import { Problem } from "../models/Problem";
 
-const BASE_URL = 'https://df74e436-41b3-4675-99d3-756563dfe55d.mock.pstmn.io'
+const BASE_URL = 'http://localhost:3001'
 
 export const getAsync = async (endpoint: string, headers: Headers = new Headers()) =>{
     const requestOptions = {
@@ -15,4 +15,16 @@ export const getAsync = async (endpoint: string, headers: Headers = new Headers(
 export const getProblemAsync = async (problemId: string): Promise<Problem> => {
     const response = await getAsync(`problems/${problemId}`);
     return new Problem(response);
+}
+
+export const getAllProblems = async () => {
+    const requestOptions = {
+        method: 'GET',
+        headers: {}
+    };
+    const response = await fetch(`${BASE_URL}/problems`, requestOptions);
+    console.log('response', response)
+    const responseJson = await response.json()
+    console.log('responseJson', responseJson)
+    return responseJson;
 }
