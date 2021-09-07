@@ -4,7 +4,7 @@ import Header from "../components/Header";
 
 const ContestsPage = () => {
     const [searchText, setSearchText] = useState();
-    const handleSearch = (inp:any) => {
+    const handleSearch = (inp: any) => {
         console.log(inp)
         console.log(searchText)
     }
@@ -21,6 +21,8 @@ const ContestsPage = () => {
                         />
                     </Form.Group>
                 </Form>
+            </div>
+            <div>
             </div>
         </div>
     )

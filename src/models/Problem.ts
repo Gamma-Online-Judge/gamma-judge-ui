@@ -1,6 +1,7 @@
 export class Problem {
   constructor(data: any = {}) {
     this.id = data.id || ""
+    this.customId = data.customId || ""
     this.title = data.title || "";
     this.statement = data.statement || "";
     this.input = data.input || "";
@@ -14,6 +15,7 @@ export class Problem {
     this.memoryLimit = data.memoryLimit || 0
   }
   id: string;
+  customId: string;
   title: string;
   statement: string;
   input: string;
