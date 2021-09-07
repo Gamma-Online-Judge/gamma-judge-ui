@@ -1,13 +1,23 @@
-import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Form, Table } from "react-bootstrap";
+import { getAllContests } from "../actions/contest";
 import Header from "../components/Header";
+import { Contest } from "../models/Contest";
+import { formatDate } from "../util/dateHandler";
 
 const ContestsPage = () => {
+    const [contests, setContests] = useState<Contest[]>([]);
     const [searchText, setSearchText] = useState();
+
     const handleSearch = (inp: any) => {
         console.log(inp)
         console.log(searchText)
     }
+
+    useEffect(() => {
+        getAllContests().then(response => setContests(response));
+    })
+
     return (
         <div>
             <Header />
@@ -22,7 +32,25 @@ const ContestsPage = () => {
                     </Form.Group>
                 </Form>
             </div>
-            <div>
+            <div className="ph3">
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            contests.map((contest, i) =>
+                                <tr key={i} onClick={() => console.log(contest.id)}>
+                                    <td>{contest.name}</td>
+                                    <td>{formatDate(contest.date)}</td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </Table>
             </div>
         </div>
     )
