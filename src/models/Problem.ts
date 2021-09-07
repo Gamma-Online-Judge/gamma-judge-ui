@@ -10,6 +10,8 @@ export class Problem {
     this.contest = data.contest || ""
     this.tags = data.tags || []
     this.tutorial = data.tutorial || ""
+    this.timeLimit = data.timeLimit || 0
+    this.memoryLimit = data.memoryLimit || 0
   }
   id: string;
   title: string;
@@ -21,13 +23,17 @@ export class Problem {
   contest: string;
   tags: string[];
   tutorial: string;
+  timeLimit: number;
+  memoryLimit: number;
 }
 
 export class SampleInput {
   constructor(data: any = {}) {
     this.input = data.input || "";
     this.output = data.output || "";
+    this.note = data.note || ''
   }
   input: string;
   output: string;
+  note: string
 }

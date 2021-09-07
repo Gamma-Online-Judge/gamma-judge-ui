@@ -1,8 +1,10 @@
 import { Card } from "react-bootstrap";
+import Latex from "react-latex-next";
 import { SampleInput } from "../../../../models/Problem";
-import ClipBoardButton from "../../../ClipboadButton";
+import ClipBoardButton from "../../../ClipboardButton";
 
 const SampleInputCart = ({ sampleInput, className = "" }: SampleInputCardProps) => {
+
     return (
         <div className={className}>
             <div className="flex flex-row">
@@ -17,7 +19,7 @@ const SampleInputCart = ({ sampleInput, className = "" }: SampleInputCardProps) 
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            {sampleInput.input}
+                            <pre>{sampleInput.input}</pre>
                         </Card.Text>
                     </Card.Body>
                 </Card>
@@ -33,11 +35,12 @@ const SampleInputCart = ({ sampleInput, className = "" }: SampleInputCardProps) 
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            {sampleInput.output}
+                            <pre>{sampleInput.output}</pre>
                         </Card.Text>
                     </Card.Body>
                 </Card>
             </div>
+            <Latex>{sampleInput.note}</Latex>
         </div>
     )
 }

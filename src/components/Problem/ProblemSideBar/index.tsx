@@ -16,7 +16,7 @@ const ProblemSideBar = ({ problem, onSubmit = () => { }, className = "" }: Probl
     }
     return (
         <div className={`${className} pa3`}>
-            <Form onSubmit={() => onSubmit(language, file)}>
+            <Form>
                 <h3> Envie seu código </h3>
                 <hr className="" />
                 <Form.Group>
@@ -40,7 +40,7 @@ const ProblemSideBar = ({ problem, onSubmit = () => { }, className = "" }: Probl
                     />
                 </Form.Group>
 
-                <Button className="mt-3" variant="primary" type="submit">
+                <Button className="mt-3" variant="primary" onClick={() => onSubmit(language, file)}>
                     Enviar
                 </Button>
             </Form>

@@ -33,6 +33,7 @@ const getBgType = (tagName: string) => {
             return "dark"
     }
 }
+
 const getTextType = (tagName: string) => {
     switch (tagName.toLowerCase()) {
         case "dfs":
