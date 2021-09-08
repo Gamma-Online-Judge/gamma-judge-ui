@@ -2,9 +2,11 @@ import { Problem } from "../models/Problem";
 import { fetchApi } from "./baseRequest";
 
 export const getProblemAsync = async (problemId: string) => {
-    return await fetchApi(`/problems/${problemId}`) as Problem;
+    const result = await fetchApi(`/problems/${problemId}`);
+    return new Problem(result)
 }
 
 export const getAllProblems = async () => {
-    return await fetchApi(`/problems`) as Problem[];
+    const result = await fetchApi(`/problems`) as [];
+    return result.map(data => new Problem(data))
 }

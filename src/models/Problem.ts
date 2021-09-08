@@ -32,10 +32,8 @@ export class Problem {
 export class SampleInput {
   constructor(data: any = {}) {
     this.input = data.input || "";
-    this.output = data.output || "";
-    this.note = data.note || ''
+    this.output = data.output || ""  
   }
   input: string;
   output: string;
-  note: string
 }

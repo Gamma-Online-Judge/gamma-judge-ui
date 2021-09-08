@@ -40,7 +40,6 @@ const SampleInputCart = ({ sampleInput, className = "" }: SampleInputCardProps) 
                     </Card.Body>
                 </Card>
             </div>
-            <Latex>{sampleInput.note}</Latex>
         </div>
     )
 }
