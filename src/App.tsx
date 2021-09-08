@@ -3,6 +3,7 @@ import ContestsPage from "./pages/ContestsPage";
 import HomePage from './pages/HomePage'
 import ProblemPage from './pages/ProblemPage'
 import ProblemsPage from "./pages/ProblemsPage";
+import SubmissionPage from "./pages/SubmissionPage";
 import TutorialPage from "./pages/TutorialPage";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Route path="/problems" component={ProblemsPage} />
       <Route path="/contests" component={ContestsPage} />
       <Route path="/problem/:problemId" component={ProblemPage} />
+      <Route path="/submission/:submissionId" component={SubmissionPage} />
       <Route path="/tutorial/:problemId" component={TutorialPage} />
     </Router>
   );

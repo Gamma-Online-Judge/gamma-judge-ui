@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { getProblemAsync } from '../actions/problem';
 import Header from '../components/Header';
 import ProblemContent from '../components/Problem/ProblemContent';
@@ -14,10 +14,17 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => 
         getProblemAsync(match.params.problemId).then(problem => setProblem(problem))
     }, [match.params.problemId])
 
+    const history = useHistory();
+
+    const goToSubmissionPage = (submissionId: string) => {
+        history.push(`/submission/${submissionId}`);
+    }
+    
     const onSubmitQuestion = (language: string, file: File | undefined) => {
         console.log('File submitted');
         console.log(language);
         console.log(file)
+        goToSubmissionPage("123")
     }
 
     return (

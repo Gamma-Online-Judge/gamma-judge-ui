@@ -45,7 +45,7 @@ const ProblemsPage = () => {
                         <tr>
                             <th>Id</th>
                             <th>Título</th>
-                            <th>Contest</th>
+                            <th>Evento</th>
                             <th>Tags</th>
                         </tr>
                     </thead>
