@@ -69,7 +69,7 @@ const ContestPage = ({
                 const contestInfo =
                   contestsMap.get(problemInfo.contest) || new Contest();
                 return (
-                  <tr key={i} onClick={() => console.log(problemInfo.id)}>
+                  <tr key={i}>
                     <td>
                       <strong>{contestProblem.identifier}</strong>
                     </td>
@@ -91,7 +91,7 @@ const ContestPage = ({
                       ))}
                     </td>
                     <td>
-                      {problemInfo.contest == contest.customId ? (
+                      {problemInfo.contest === contest.customId ? (
                         <div>Problema original deste evento</div>
                       ) : (
                         <div className="d-grid gap-2">

@@ -8,12 +8,6 @@ import { formatDate } from "../util/dateHandler";
 
 const ContestsPage = () => {
   const [contests, setContests] = useState<Contest[]>([]);
-  const [searchText, setSearchText] = useState();
-
-  const handleSearch = (inp: any) => {
-    console.log(inp);
-    console.log(searchText);
-  };
 
   useEffect(() => {
     getAllContests().then((response) => setContests(response));
@@ -23,13 +17,9 @@ const ContestsPage = () => {
     <div>
       <Header />
       <div className="pa3">
-        <Form onSubmit={handleSearch}>
+        <Form>
           <Form.Group className="mb-3" controlId="searchInput">
-            <Form.Control
-              type="search"
-              placeholder="Pesquisar"
-              onChange={(e: any) => setSearchText(e.target.value)}
-            />
+            <Form.Control type="search" placeholder="Pesquisar" />
           </Form.Group>
         </Form>
       </div>

@@ -26,7 +26,7 @@ const SubmissionPage = ({
         break;
     }
     setTimeout(() => setLoading(false), 3000);
-  });
+  }, [submissionId]);
 
   const { variant, title, message } = getVerdictInfo(verdict);
 
@@ -43,6 +43,7 @@ const SubmissionPage = ({
           <Alert variant={variant}>
             <h3>{title}</h3>
             <p>{message}</p>
+            <p>Id da submissão: {submissionId} </p>
             <hr />
             <div className="d-flex justify-content-end">
               <Button variant={`outline-${variant}`}>Ver o código</Button>

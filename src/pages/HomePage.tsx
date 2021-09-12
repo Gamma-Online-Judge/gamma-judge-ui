@@ -5,8 +5,6 @@ import Header from "../components/Header";
 const IMG_LINK_1 =
   "https://designe.com.br/wp-content/uploads/2021/03/chopper-one-piece-arco-de-wano.jpg";
 const IMG_LINK_2 =
-  "https://i.pinimg.com/474x/c0/c7/1b/c0c71bcadc86be5ea1c9193e71e3b05a.jpg";
-const IMG_LINK_3 =
   "https://pa1.narvii.com/6242/639718adc80907718864e567f1cb39dffba0fecc_hq.gif";
 const HomePage = () => {
 
@@ -50,7 +48,7 @@ const HomePage = () => {
         </Card>
 
         <Card style={{ width: "18rem" }} className="ma2 tc">
-          <Card.Img variant="top" src={IMG_LINK_3} />
+          <Card.Img variant="top" src={IMG_LINK_2} />
           <Card.Body>
             <Card.Text>
               Some quick example text to build on the card title and make up the

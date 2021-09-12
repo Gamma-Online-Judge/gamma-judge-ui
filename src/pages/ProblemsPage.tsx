@@ -9,7 +9,6 @@ import { Contest } from "../models/Contest";
 import { Problem } from "../models/Problem";
 
 const ProblemsPage = () => {
-  const [searchText, setSearchText] = useState();
   const [problems, setProblems] = useState<Problem[]>([]);
   const [contestsMap, setContestsMap] = useState<Map<string, Contest>>(
     new Map<string, Contest>()
@@ -26,22 +25,13 @@ const ProblemsPage = () => {
     );
   }, [problems]);
 
-  const handleSearch = (inp: any) => {
-    console.log(inp);
-    console.log(searchText);
-  };
-
   return (
     <div>
       <Header />
       <div className="pa3">
-        <Form onSubmit={handleSearch}>
+        <Form>
           <Form.Group className="mb-3" controlId="searchInput">
-            <Form.Control
-              type="search"
-              placeholder="Pesquisar"
-              onChange={(e: any) => setSearchText(e.target.value)}
-            />
+            <Form.Control type="search" placeholder="Pesquisar" />
           </Form.Group>
         </Form>
       </div>

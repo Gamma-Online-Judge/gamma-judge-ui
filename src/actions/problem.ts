@@ -22,7 +22,6 @@ export const getProblemsByCustomIds = async (customIds: string[]) => {
         body: query
     }
     const result = await fetchApi(`/problems/query`, requestOptions) as [];
-    console.log(result)
     return result.map(data => new Problem(data))
 }
 

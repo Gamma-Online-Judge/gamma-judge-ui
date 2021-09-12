@@ -21,9 +21,6 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => 
     }
     
     const onSubmitQuestion = (language: string, file: File | undefined) => {
-        console.log('File submitted');
-        console.log(language);
-        console.log(file)
         goToSubmissionPage("123")
     }
 

@@ -1,5 +1,3 @@
-import { customCompare } from "../util/sortFunc"
-
 export class Contest {
     constructor(data: any = {}) {
         const problems = data.problems || []
