@@ -1,8 +1,8 @@
 import { Contest } from "../models/Contest";
 import { fetchApi } from "./baseRequest";
 
-export const getContestAsync = async (problemId: string) => {
-    const data = await fetchApi(`/contests/${problemId}`);
+export const getContestAsync = async (contestId: string) => {
+    const data = await fetchApi(`/contests/${contestId}`);
     return new Contest(data);
 }
 
