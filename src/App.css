@@ -1,7 +1,12 @@
-bg-green {
+.bg-green {
     background-color: '#219653';
 }
 
-gray {
+.gray {
     color: '#6C757D';
+}
+
+.text-inherit {
+    color: inherit;
+    text-decoration: inherit;
 }

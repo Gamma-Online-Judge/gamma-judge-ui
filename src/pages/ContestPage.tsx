@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { RouteComponentProps, useHistory } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import { getContestAsync, getContestsMapByCustomId } from "../actions/contest";
 import { getProblemsMapByCustomId } from "../actions/problem";
 import Header from "../components/Header";
@@ -41,16 +41,6 @@ const ContestPage = ({
     );
   }, [problemsMap]);
 
-  const history = useHistory();
-
-  const goToProblemPage = (problemId: string) => {
-    history.push(`/problem/${problemId}`);
-  };
-
-  const goToContestPage = (contestId: string) => {
-    history.push(`/contest/${contestId}`);
-  };
-
   return (
     <div>
       <Header />
@@ -85,12 +75,14 @@ const ContestPage = ({
                     </td>
                     <td>
                       <div className="d-grid gap-2">
-                        <Button
-                          variant="outline-success"
-                          onClick={() => goToProblemPage(problemInfo.id)}
+                        <Link
+                          className="text-inherit d-grid gap-2"
+                          to={`/problem/${problemInfo.id}`}
                         >
-                          {problemInfo.title}
-                        </Button>
+                          <Button className="tl" variant="outline-success">
+                            {problemInfo.title}
+                          </Button>
+                        </Link>
                       </div>
                     </td>
                     <td>
@@ -100,15 +92,17 @@ const ContestPage = ({
                     </td>
                     <td>
                       {problemInfo.contest == contest.customId ? (
-                        <div className="tc">Problema original deste evento</div>
+                        <div>Problema original deste evento</div>
                       ) : (
                         <div className="d-grid gap-2">
-                          <Button
-                            variant="outline-secondary"
-                            onClick={() => goToContestPage(contestInfo.id)}
+                          <Link
+                            className="text-inherit d-grid gap-2"
+                            to={`/contests/${contestInfo.id}`}
                           >
-                            {contestInfo.name}
-                          </Button>
+                            <Button className="tl" variant="outline-secondary">
+                              {contestInfo.name}
+                            </Button>
+                          </Link>
                         </div>
                       )}
                     </td>

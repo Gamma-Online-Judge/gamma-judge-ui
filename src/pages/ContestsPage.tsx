@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Form, Table, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAllContests } from "../actions/contest";
 import Header from "../components/Header";
 import { Contest } from "../models/Contest";
@@ -18,12 +18,6 @@ const ContestsPage = () => {
   useEffect(() => {
     getAllContests().then((response) => setContests(response));
   });
-
-  const history = useHistory();
-
-  const goToContestPage = (contestId: string) => {
-    history.push(`/contest/${contestId}`);
-  };
 
   return (
     <div>
@@ -52,12 +46,14 @@ const ContestsPage = () => {
               <tr key={i}>
                 <td>
                   <div className="d-grid gap-2">
-                    <Button
-                      variant="outline-success"
-                      onClick={() => goToContestPage(contest.id)}
+                    <Link
+                      className="text-inherit d-grid gap-2"
+                      to={`/contest/${contest.id}`}
                     >
-                      {contest.name}
-                    </Button>
+                      <Button className="tl" variant="outline-success">
+                        {contest.name}
+                      </Button>
+                    </Link>
                   </div>
                 </td>
                 <td>{formatDate(contest.date)}</td>
