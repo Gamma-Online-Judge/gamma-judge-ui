@@ -25,3 +25,10 @@ export const getProblemsByCustomIds = async (customIds: string[]) => {
     console.log(result)
     return result.map(data => new Problem(data))
 }
+
+export const getProblemsMapByCustomId = async (customIds: string[]) => {
+    const problems = await getProblemsByCustomIds(customIds);
+    const result = new Map<string, Problem>();
+    problems.map((problem) => result.set(problem.customId, problem));
+    return result;
+};

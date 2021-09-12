@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Form, Table } from "react-bootstrap";
+import { Form, Table, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { getAllContests } from "../actions/contest";
 import Header from "../components/Header";
@@ -49,8 +49,17 @@ const ContestsPage = () => {
           </thead>
           <tbody>
             {contests.map((contest, i) => (
-              <tr key={i} onClick={() => goToContestPage(contest.id)}>
-                <td>{contest.name}</td>
+              <tr key={i}>
+                <td>
+                  <div className="d-grid gap-2">
+                    <Button
+                      variant="outline-success"
+                      onClick={() => goToContestPage(contest.id)}
+                    >
+                      {contest.name}
+                    </Button>
+                  </div>
+                </td>
                 <td>{formatDate(contest.date)}</td>
               </tr>
             ))}

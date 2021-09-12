@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { RouteComponentProps, useHistory } from "react-router-dom";
-import { getContestAsync, getContestsByCustomIds } from "../actions/contest";
-import { getProblemsByCustomIds } from "../actions/problem";
+import { getContestAsync, getContestsMapByCustomId } from "../actions/contest";
+import { getProblemsMapByCustomId } from "../actions/problem";
 import Header from "../components/Header";
 import TagBadge from "../components/TagBadge";
 import { Contest } from "../models/Contest";
@@ -100,9 +100,7 @@ const ContestPage = ({
                     </td>
                     <td>
                       {problemInfo.contest == contest.customId ? (
-                        <div className="tc">
-                          <strong>Problema original deste evento</strong>
-                        </div>
+                        <div className="tc">Problema original deste evento</div>
                       ) : (
                         <div className="d-grid gap-2">
                           <Button
@@ -127,17 +125,3 @@ const ContestPage = ({
 export default ContestPage;
 
 type ContestPageRouteParams = { contestId: string };
-
-const getProblemsMapByCustomId = async (customIds: string[]) => {
-  const problems = await getProblemsByCustomIds(customIds);
-  const result = new Map<string, Problem>();
-  problems.map((problem) => result.set(problem.customId, problem));
-  return result;
-};
-
-const getContestsMapByCustomId = async (customIds: string[]) => {
-  const contests = await getContestsByCustomIds(customIds);
-  const result = new Map<string, Contest>();
-  contests.map((contest) => result.set(contest.customId, contest));
-  return result;
-};
