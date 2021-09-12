@@ -14,6 +14,7 @@ export type TagBadgeProps = {
 }
 
 const getBgType = (tagName: string) => {
+    return "primary";
     switch (tagName.toLowerCase()) {
         case "dfs":
             return "primary";
@@ -35,6 +36,7 @@ const getBgType = (tagName: string) => {
 }
 
 const getTextType = (tagName: string) => {
+    return "light";
     switch (tagName.toLowerCase()) {
         case "dfs":
             return "light";
