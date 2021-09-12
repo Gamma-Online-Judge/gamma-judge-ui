@@ -11,7 +11,7 @@ export const getAllProblems = async () => {
     return result.map(data => new Problem(data))
 }
 
-export const getProblemsFromCustomIds = async (customIds: string[]) => {
+export const getProblemsByCustomIds = async (customIds: string[]) => {
     const query = JSON.stringify({
         "customId": {
             "$in": customIds

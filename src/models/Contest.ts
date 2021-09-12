@@ -1,3 +1,5 @@
+import { customCompare } from "../util/sortFunc"
+
 export class Contest {
     constructor(data: any = {}) {
         const problems = data.problems || []
@@ -18,9 +20,10 @@ export class ContestProblem {
     constructor(data: any = {}) {
         this.customId = data.customId || ''
         this.identifier = data.identifier || ''
-        this.isOriginal = data.isOriginal || false
+    }
+    toString() { // To use sort
+        return this.identifier
     }
     customId: string;
     identifier: string;
-    isOriginal: boolean;
 }

@@ -2,7 +2,6 @@ import { stringify } from "querystring";
 import { Contest } from "../models/Contest";
 import { Problem } from "../models/Problem";
 import { fetchApi } from "./baseRequest";
-import { getProblemsFromCustomIds } from "./problem";
 
 export const getContestAsync = async (contestId: string) => {
     const data = await fetchApi(`/contests/${contestId}`);
@@ -15,9 +14,17 @@ export const getAllContests = async () => {
     return result.map(data => new Contest(data));
 }
 
-export const getContestProblems = async (customIds: string[]) => {
-    const problems = await getProblemsFromCustomIds(customIds)
-    const result = new Map<string, Problem>();
-    problems.map(problem => result.set(problem.customId, problem))
-    return result;
+export const getContestsByCustomIds = async (customIds: string[]) => {
+    const query = JSON.stringify({
+        "customId": {
+            "$in": customIds
+        }
+    })
+    const requestOptions: RequestInit = {
+        method: "POST",
+        body: query
+    }
+    const result = await fetchApi(`/contests/query`, requestOptions) as [];
+    console.log(result)
+    return result.map(data => new Contest(data))
 }
