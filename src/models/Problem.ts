@@ -1,12 +1,13 @@
 export class Problem {
   constructor(data: any = {}) {
+    const sampleInputs = data.sampleInputs || []
     this.id = data.id || ""
     this.customId = data.customId || ""
     this.title = data.title || "";
     this.statement = data.statement || "";
     this.input = data.input || "";
     this.output = data.output || "";
-    this.sampleInputs = data.sampleInputs || [];
+    this.sampleInputs = sampleInputs.map((sampleInput: any) => new SampleInput(sampleInput))
     this.notes = data.notes || "";
     this.contest = data.contest || ""
     this.tags = data.tags || []
@@ -32,7 +33,7 @@ export class Problem {
 export class SampleInput {
   constructor(data: any = {}) {
     this.input = data.input || "";
-    this.output = data.output || ""  
+    this.output = data.output || ""
   }
   input: string;
   output: string;

@@ -1,10 +1,26 @@
 export class Contest {
     constructor(data: any = {}) {
-        this.id = data.id || ""
-        this.name = data.name || ""
-        this.date = new Date(data.date) || ""
+        const problems = data.problems || []
+        this.id = data.id || ''
+        this.customId = data.customId || ''
+        this.name = data.name || ''
+        this.date = new Date(data.date) || new Date()
+        this.problems = problems.map((contestProblem: any) => new ContestProblem(contestProblem))
     }
     id: string;
+    customId: string
     name: string;
     date: Date;
+    problems: ContestProblem[]
+}
+
+export class ContestProblem {
+    constructor(data: any = {}) {
+        this.customId = data.customId || ''
+        this.identifier = data.identifier || ''
+        this.isOriginal = data.isOriginal || false
+    }
+    customId: string;
+    identifier: string;
+    isOriginal: boolean;
 }
