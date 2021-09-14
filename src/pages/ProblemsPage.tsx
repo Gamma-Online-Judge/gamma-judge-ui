@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Pagination, Spinner, Table } from "react-bootstrap";
+import { Button, Pagination, Spinner, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getContestsMapByCustomId } from "../actions/contest";
 import { getAllProblems } from "../actions/problem";
@@ -14,7 +14,7 @@ const ProblemsPage = () => {
     new Map<string, Contest>()
   );
   const [page, setPage] = useState(0);
-  const [problemsNumber, setProblemsNumber] = useState(10);
+  const problemsNumber = 10;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -98,9 +98,9 @@ const ProblemsPage = () => {
           </Table>
         )}
         <Pagination>
-          <Pagination.First disabled={page == 0} onClick={() => setPage(0)} />
+          <Pagination.First disabled={page === 0} onClick={() => setPage(0)} />
           <Pagination.Prev
-            disabled={page == 0}
+            disabled={page === 0}
             onClick={() => setPage(page - 1)}
           />
           <Pagination.Item active>{page + 1}</Pagination.Item>

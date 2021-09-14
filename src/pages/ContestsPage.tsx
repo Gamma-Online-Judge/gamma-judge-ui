@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Form, Table, Button, Spinner, Pagination } from "react-bootstrap";
+import { Table, Button, Spinner, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getAllContests } from "../actions/contest";
 import Header from "../components/Header";
@@ -9,7 +9,7 @@ import { formatDate } from "../util/dateHandler";
 const ContestsPage = () => {
   const [contests, setContests] = useState<Contest[]>([]);
   const [page, setPage] = useState(0);
-  const [contestNumber, setContestsNumber] = useState(10);
+  const contestNumber = 10;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -73,9 +73,9 @@ const ContestsPage = () => {
           </Table>
         )}
         <Pagination>
-          <Pagination.First disabled={page == 0} onClick={() => setPage(0)} />
+          <Pagination.First disabled={page === 0} onClick={() => setPage(0)} />
           <Pagination.Prev
-            disabled={page == 0}
+            disabled={page === 0}
             onClick={() => setPage(page - 1)}
           />
           <Pagination.Item active>{page + 1}</Pagination.Item>
