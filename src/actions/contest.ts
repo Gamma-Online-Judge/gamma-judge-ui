@@ -21,9 +21,7 @@ export const getAllContests = async (limit: number, skip: number) => {
         method: "POST",
         body: JSON.stringify(body)
     }
-    console.log(body)
     const result = await fetchApi(`/contests/query`, requestOptions) as [];
-    console.log(body)
     return result.map(data => new Contest(data))
 }
 

@@ -6,8 +6,23 @@ export const getProblemAsync = async (problemId: string) => {
     return new Problem(result)
 }
 
-export const getAllProblems = async () => {
-    const result = await fetchApi(`/problems`) as [];
+export const getAllProblems = async (limit: number, skip: number) => {
+    const body = {
+        "options": {
+            "limit": limit,
+            "skip": skip
+        }
+    }
+    const requestOptions: RequestInit = {
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(body)
+    }
+
+    const result = await fetchApi(`/problems/query`, requestOptions) as [];
     return result.map(data => new Problem(data))
 }
 

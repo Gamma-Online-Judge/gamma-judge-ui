@@ -31,14 +31,14 @@ const ContestsPage = () => {
   return (
     <div>
       <Header />
-      <div className="pa3">
+      {/* <div className="pa3">
         <Form>
           <Form.Group className="mb-3" controlId="searchInput">
             <Form.Control type="search" placeholder="Pesquisar" />
           </Form.Group>
         </Form>
-      </div>
-      <div className="flex flex-column ph3 items-center">
+      </div> */}
+      <div className="flex flex-column pa3 items-center">
         {loading ? (
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Carregando...</span>
