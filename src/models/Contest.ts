@@ -1,7 +1,7 @@
 export class Contest {
     constructor(data: any = {}) {
         const problems = data.problems || []
-        this.id = data.id || ''
+        this.id = data._id || ''
         this.customId = data.customId || ''
         this.name = data.name || ''
         this.date = new Date(data.date) || new Date()

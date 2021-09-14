@@ -13,8 +13,10 @@ export const getAllProblems = async () => {
 
 export const getProblemsByCustomIds = async (customIds: string[]) => {
     const query = JSON.stringify({
-        "customId": {
-            "$in": customIds
+        "filter": {
+            "customId": {
+                "$in": customIds
+            }
         }
     })
     const requestOptions: RequestInit = {

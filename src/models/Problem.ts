@@ -1,7 +1,7 @@
 export class Problem {
   constructor(data: any = {}) {
     const sampleInputs = data.sampleInputs || []
-    this.id = data.id || ""
+    this.id = data._id || ""
     this.customId = data.customId || ""
     this.title = data.title || "";
     this.statement = data.statement || "";

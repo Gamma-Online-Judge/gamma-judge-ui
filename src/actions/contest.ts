@@ -6,15 +6,33 @@ export const getContestAsync = async (contestId: string) => {
     return new Contest(data);
 }
 
-export const getAllContests = async () => {
-    const result = await fetchApi(`/contests`) as [];
-    return result.map(data => new Contest(data));
+export const getAllContests = async (limit: number, skip: number) => {
+    const body = {
+        "options": {
+            "limit": limit,
+            "skip": skip
+        }
+    }
+    const requestOptions: RequestInit = {
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(body)
+    }
+    console.log(body)
+    const result = await fetchApi(`/contests/query`, requestOptions) as [];
+    console.log(body)
+    return result.map(data => new Contest(data))
 }
 
 export const getContestsByCustomIds = async (customIds: string[]) => {
     const query = JSON.stringify({
-        "customId": {
-            "$in": customIds
+        "filter": {
+            "customId": {
+                "$in": customIds
+            }
         }
     })
     const requestOptions: RequestInit = {
