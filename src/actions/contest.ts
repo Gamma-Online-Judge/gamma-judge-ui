@@ -1,50 +1,17 @@
 import { Contest } from "../models/Contest";
-import { fetchApi } from "./baseRequest";
+import { api } from "./axiosBase";
 
 export const getContestAsync = async (contestId: string) => {
-    const data = await fetchApi(`/contests/${contestId}`);
-    return new Contest(data);
+    const result = await api.get(`/contests/${contestId}`);
+    return new Contest(result.data);
 }
 
 export const getAllContests = async (limit: number, skip: number) => {
-    const body = {
-        "options": {
-            "limit": limit,
-            "skip": skip
-        }
-    }
-    const requestOptions: RequestInit = {
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(body)
-    }
-    const result = await fetchApi(`/contests/query`, requestOptions) as [];
-    return result.map(data => new Contest(data))
+    const result = await api.get(`/contests?limit=${limit}&skip=${skip}`);
+    const contestsData = result.data as []
+    return contestsData.map(data => new Contest(data))
 }
 
-export const getContestsByCustomIds = async (customIds: string[]) => {
-    const query = JSON.stringify({
-        "filter": {
-            "customId": {
-                "$in": customIds
-            }
-        }
-    })
-    const requestOptions: RequestInit = {
-        method: "POST",
-        body: query
-    }
-    const result = await fetchApi(`/contests/query`, requestOptions) as [];
-    return result.map(data => new Contest(data))
-}
-
-export const getContestsMapByCustomId = async (customIds: string[]) => {
-    const contests = await getContestsByCustomIds(customIds);
-    const result = new Map<string, Contest>();
-    contests.map((contest) => result.set(contest.customId, contest));
-    return result;
-};
+export const getContestsAsync = async (contestsIds: string[]) =>
+    Promise.all(contestsIds.map(getContestAsync))
 

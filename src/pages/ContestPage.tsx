@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
-import { Link, RouteComponentProps } from "react-router-dom";
-import { getContestAsync, getContestsMapByCustomId } from "../actions/contest";
-import { getProblemsMapByCustomId } from "../actions/problem";
-import Header from "../components/Header";
-import TagBadge from "../components/TagBadge";
-import { Contest } from "../models/Contest";
-import { Problem } from "../models/Problem";
-import { formatDate } from "../util/dateHandler";
+import { useEffect, useState } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import { Link, RouteComponentProps } from 'react-router-dom';
+import { getContestAsync, getContestsAsync } from '../actions/contest';
+import { getProblemsAsync } from '../actions/problem';
+import Header from '../components/Header';
+import TagBadge from '../components/TagBadge';
+import { Contest } from '../models/Contest';
+import { Problem } from '../models/Problem';
+import { formatDate } from '../util/dateHandler';
 
 const ContestPage = ({
   match,
@@ -27,18 +27,26 @@ const ContestPage = ({
 
   useEffect(() => {
     const customIds = contest.problems.map((problem) => problem.customId);
-    getProblemsMapByCustomId(customIds).then((problemsMap) =>
-      setProblemsMap(problemsMap)
-    );
+    getProblemsAsync(customIds).then((problems) => {
+      const arr = problems.map((problem) => [
+        problem.customId,
+        problem,
+      ]) as Iterable<readonly [string, Problem]>;
+      setProblemsMap(new Map(arr));
+    });
   }, [contest.problems]);
 
   useEffect(() => {
     const customIds = Array.from(problemsMap.values()).map(
       (problem) => problem.contest
     );
-    getContestsMapByCustomId(customIds).then((contestsMap) =>
-      setContestsMap(contestsMap)
-    );
+    getContestsAsync(customIds).then((contests) => {
+      const arr = contests.map((contest) => [
+        contest.customId,
+        contest,
+      ]) as Iterable<readonly [string, Contest]>;
+      setContestsMap(new Map(arr));
+    });
   }, [problemsMap]);
 
   return (
@@ -77,7 +85,7 @@ const ContestPage = ({
                       <div className="d-grid gap-2">
                         <Link
                           className="text-inherit d-grid gap-2"
-                          to={`/problem/${problemInfo.id}`}
+                          to={`/problem/${problemInfo.customId}`}
                         >
                           <Button className="tl" variant="outline-success">
                             {problemInfo.title}
@@ -97,7 +105,7 @@ const ContestPage = ({
                         <div className="d-grid gap-2">
                           <Link
                             className="text-inherit d-grid gap-2"
-                            to={`/contest/${contestInfo.id}`}
+                            to={`/contest/${contestInfo.customId}`}
                           >
                             <Button className="tl" variant="outline-secondary">
                               {contestInfo.name}

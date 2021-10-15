@@ -58,7 +58,7 @@ const ContestsPage = () => {
                     <div className="d-grid gap-2">
                       <Link
                         className="text-inherit d-grid gap-2"
-                        to={`/contest/${contest.id}`}
+                        to={`/contest/${contest.customId}`}
                       >
                         <Button className="tl" variant="outline-success">
                           {contest.name}

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Button, Pagination, Spinner, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { getContestsMapByCustomId } from "../actions/contest";
-import { getAllProblems } from "../actions/problem";
-import Header from "../components/Header";
-import TagBadge from "../components/TagBadge";
-import { Contest } from "../models/Contest";
-import { Problem } from "../models/Problem";
+import { useEffect, useState } from 'react';
+import { Button, Pagination, Spinner, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { getContestsAsync } from '../actions/contest';
+import { getAllProblems } from '../actions/problem';
+import Header from '../components/Header';
+import TagBadge from '../components/TagBadge';
+import { Contest } from '../models/Contest';
+import { Problem } from '../models/Problem';
 
 const ProblemsPage = () => {
   const [problems, setProblems] = useState<Problem[]>([]);
@@ -26,10 +26,14 @@ const ProblemsPage = () => {
   }, [page]);
 
   useEffect(() => {
-    const customIds = problems.map((problem) => problem.contest);
-    getContestsMapByCustomId(customIds).then((contestsMap) =>
-      setContestsMap(contestsMap)
-    );
+    const contestsIds = problems.map((problem) => problem.contest);
+    getContestsAsync(contestsIds).then((contests) => {
+      const arr = contests.map((contest) => [
+        contest.customId,
+        contest,
+      ]) as Iterable<readonly [string, Contest]>;
+      setContestsMap(new Map(arr));
+    });
   }, [problems]);
 
   return (
@@ -67,7 +71,7 @@ const ProblemsPage = () => {
                     <td>
                       <Link
                         className="text-inherit d-grid gap-2"
-                        to={`/problem/${problem.id}`}
+                        to={`/problem/${problem.customId}`}
                       >
                         <Button className="tl" variant="outline-success">
                           {problem.title}
@@ -83,7 +87,7 @@ const ProblemsPage = () => {
                       <div className="d-grid gap-2">
                         <Link
                           className="text-inherit d-grid gap-2"
-                          to={`/contest/${contestInfo.id}`}
+                          to={`/contest/${contestInfo.customId}`}
                         >
                           <Button className="tl" variant="outline-secondary">
                             {contestInfo.name}
