@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header snapshot 1`] = `
+<nav
+  className="navbar navbar-expand navbar-dark bg-green"
+>
+  <div
+    className="container"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Gamma Online Judge
+    </a>
+    <button
+      aria-controls="basic-navbar-nav"
+      aria-label="Toggle navigation"
+      className="navbar-toggler collapsed"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="me-auto navbar-nav"
+      onKeyDown={[Function]}
+    >
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="/"
+        disabled={false}
+        href="/"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="/contests"
+        disabled={false}
+        href="/contests"
+        onClick={[Function]}
+      >
+        Contests
+      </a>
+      <a
+        className="nav-link"
+        data-rr-ui-event-key="/problems"
+        disabled={false}
+        href="/problems"
+        onClick={[Function]}
+      >
+        Problems
+      </a>
+    </div>
+  </div>
+</nav>
+`;
