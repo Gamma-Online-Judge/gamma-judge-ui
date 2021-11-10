@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagBadge snapshot 1`] = `
+<span
+  className="mh1 badge rounded-pill bg-primary"
+>
+  
+</span>
+`;
