@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { Table, Button, Spinner, Pagination } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { getAllContests } from "../actions/contest";
-import Header from "../components/Header";
-import { Contest } from "../models/Contest";
-import { formatDate } from "../util/dateHandler";
+import { useEffect, useState } from 'react';
+import { Table, Button, Spinner, Pagination } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { getAllContests } from '../actions/contest';
+import Header from '../components/Header';
+import { Contest } from '../models/Contest';
+import { formatDate } from '../util/dateHandler';
 
 const ContestsPage = () => {
   const [contests, setContests] = useState<Contest[]>([]);
@@ -48,7 +48,8 @@ const ContestsPage = () => {
             <thead>
               <tr>
                 <th>Título</th>
-                <th>Data</th>
+                <th>Ano</th>
+                <th>ID</th>
               </tr>
             </thead>
             <tbody>
@@ -66,7 +67,8 @@ const ContestsPage = () => {
                       </Link>
                     </div>
                   </td>
-                  <td>{formatDate(contest.date)}</td>
+                  <td>{contest.date.getFullYear()}</td>
+                  <td>{contest.customId}</td>
                 </tr>
               ))}
             </tbody>
