@@ -10,7 +10,7 @@ const ProblemSideBar = ({
   className = "",
 }: ProblemSideBarProps) => {
   const [file, setFile] = useState<File | undefined>(undefined);
-  const [language, setLanguage] = useState<string>("C");
+  const [language, setLanguage] = useState<string>("c");
 
   return (
     <div className={`${className} pa3`}>
@@ -26,8 +26,9 @@ const ProblemSideBar = ({
             onChange={(e: any) => setLanguage(e.target.value)}
           >
             <option value="c">C</option>
-            <option value="c++">C++</option>
-            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="py2">Python2</option>
+            <option value="py3">Python3</option>
           </Form.Select>
         </Form.Group>
 

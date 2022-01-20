@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { getProblemAsync } from '../actions/problem';
+import { submitCodeAsync } from '../actions/submissions';
+
 import Header from '../components/Header';
 import ProblemContent from '../components/Problem/ProblemContent';
 import ProblemSideBar from '../components/Problem/ProblemSideBar';
@@ -17,18 +19,23 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => 
     const history = useHistory();
 
     const goToSubmissionPage = (submissionId: string) => {
+
         history.push(`/submission/${submissionId}`);
     }
-    
+
     const onSubmitQuestion = (language: string, file: File | undefined) => {
-        goToSubmissionPage("123")
+        if (file === undefined) return;
+        submitCodeAsync(problem.customId, file, language, "123").then((submission) => {
+            console.log(submission)
+            goToSubmissionPage(submission.id);
+        })
     }
 
     return (
         <div>
             <Header />
             <div className="flex flex-row">
-                <ProblemContent 
+                <ProblemContent
                     className="w-two-thirds"
                     problem={problem}
                 />
