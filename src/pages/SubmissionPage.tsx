@@ -34,6 +34,12 @@ const SubmissionPage = ({
           <h3>{title}</h3>
           <p>{message}</p>
           <p>Id da submissão: {submissionId} </p>
+          {
+            title === "Running" &&
+            <div className="flex justify-center">
+              <Spinner animation="border" />
+            </div>
+          }
           <hr />
           <div className="d-flex justify-content-end">
             <Button variant={`outline-${variant}`}>Ver o código</Button>
