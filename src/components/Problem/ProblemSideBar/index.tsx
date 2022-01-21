@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Problem } from "../../../models/Problem";
 import TagBadge from "../../TagBadge";
 
 const ProblemSideBar = ({
+  isLoading,
   problem,
-  onSubmit = () => {},
+  onSubmit = () => { },
   className = "",
 }: ProblemSideBarProps) => {
   const [file, setFile] = useState<File | undefined>(undefined);
@@ -41,11 +42,15 @@ const ProblemSideBar = ({
         </Form.Group>
 
         <Button
+          disabled={isLoading}
           className="mt-3"
           variant="primary"
           onClick={() => onSubmit(language, file)}
         >
-          Enviar
+          {
+            !isLoading ?
+              "Enviar" : <Spinner size="sm" animation={"border"} />
+          }
         </Button>
       </Form>
       <hr className="" />
@@ -72,6 +77,7 @@ const ProblemSideBar = ({
 export default ProblemSideBar;
 
 type ProblemSideBarProps = {
+  isLoading: boolean;
   problem: Problem;
   className?: string;
   onSubmit?: (language: string, file: File | undefined) => void;

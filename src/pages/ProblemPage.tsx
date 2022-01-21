@@ -12,6 +12,8 @@ import { Problem } from '../models/Problem';
 const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => {
 
     const [problem, setProblem] = useState(new Problem({}))
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         getProblemAsync(match.params.problemId).then(problem => setProblem(problem))
     }, [match.params.problemId])
@@ -25,10 +27,12 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => 
 
     const onSubmitQuestion = (language: string, file: File | undefined) => {
         if (file === undefined) return;
-        submitCodeAsync(problem.customId, file, language, "123").then((submission) => {
-            console.log(submission)
-            goToSubmissionPage(submission.id);
-        })
+        setIsLoading(true);
+        submitCodeAsync(problem.customId, file, language, "123")
+            .then((submission) => {
+                goToSubmissionPage(submission.id);
+            })
+            .catch((error) => setIsLoading(false))
     }
 
     return (
@@ -40,6 +44,7 @@ const ProblemPage = ({ match }: RouteComponentProps<ProblemPageRouteParams>) => 
                     problem={problem}
                 />
                 <ProblemSideBar
+                    isLoading={isLoading}
                     onSubmit={onSubmitQuestion}
                     problem={problem}
                     className="w-third"
