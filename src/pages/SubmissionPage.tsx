@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Spinner } from "react-bootstrap";
+import { Alert, Button, Card, Spinner } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
-import { getSubmissionAsync } from "../actions/submissions";
+import { getSubmissionAsync, getSubmissionCodeAsync } from "../actions/submissions";
 import Header from "../components/Header";
 import { Submission } from "../models/Submission";
 
@@ -11,6 +11,11 @@ const SubmissionPage = ({
   const { submissionId } = match.params;
   const [submission, setSubmission] = useState<Submission>(new Submission());
   const [updateTrigger, setUpdateTrigger] = useState(false);
+  const [sourceCode, setSourceCode] = useState('');
+
+  useEffect(() => {
+    getSubmissionCodeAsync(submissionId).then(setSourceCode);
+  }, [submissionId]);
 
   function triggerUpdate() {
     setTimeout(() => setUpdateTrigger(!updateTrigger), 1000);
@@ -30,21 +35,26 @@ const SubmissionPage = ({
     <div>
       <Header />
       <div className="flex justify-center pa3">
+
         <Alert variant={variant}>
           <h3>{title}</h3>
           <p>{message}</p>
-          <p>Id da submissão: {submissionId} </p>
           {
-            title === "Running" &&
+            title === "Em execução" &&
             <div className="flex justify-center">
               <Spinner animation="border" />
             </div>
           }
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button variant={`outline-${variant}`}>Ver o código</Button>
-          </div>
         </Alert>
+
+      </div>
+      <div className="flex justify-center pa3">
+        <Card style={{ width: '90%' }}>
+          <Card.Header as="h5">Código fonte - {submissionId}</Card.Header>
+          <Card.Body>
+            <Card.Text> <p className="pre">{sourceCode}</p></Card.Text>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );
@@ -104,7 +114,7 @@ const getVerdictInfo = (verdict: string) => {
       return {
         variant: "secondary",
         title: "Em execução",
-        message: "Ainda está sendo avaliado",
+        message: "O código está sendo avaliado",
       };
     default:
       return {};

@@ -1,6 +1,12 @@
 import { Submission } from "../models/Submission";
 import { api } from "./axiosBase";
 
+export const getSubmissionCodeAsync = async (id: string) => {
+    const result = await api.get<string>(`/submissions/file/${id}`);
+    console.log(result)
+    return result.data;
+}
+
 export const getSubmissionAsync = async (id: string) => {
     const result = await api.get(`/submissions/status/${id}`);
     return new Submission(result.data);
