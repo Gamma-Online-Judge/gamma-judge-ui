@@ -10,10 +10,19 @@ const SubmissionPage = ({
 }: RouteComponentProps<SubmissionPageRouteParams>) => {
   const { submissionId } = match.params;
   const [submission, setSubmission] = useState<Submission>(new Submission());
+  const [updateTrigger, setUpdateTrigger] = useState(false);
 
-  useEffect(() => {
+  function triggerUpdate() {
+    setTimeout(() => setUpdateTrigger(!updateTrigger), 1000);
+  }
+
+  function updatePage() {
     getSubmissionAsync(submissionId).then(setSubmission);
-  }, [submissionId]);
+
+    triggerUpdate();
+  }
+
+  useEffect(updatePage, [updateTrigger]);
 
   const { variant, title, message } = getVerdictInfo(submission.status);
 
