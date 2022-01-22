@@ -28,8 +28,17 @@ const ProblemSideBar = ({
           >
             <option value="c">C</option>
             <option value="cpp">C++</option>
+            <option value="go">Go</option>
+            <option value="java">Java</option>
+            <option value="js">JavaScript</option>
+            <option value="ml">ML</option>
+            <option value="pas">Pascal</option>
             <option value="py2">Python2</option>
             <option value="py3">Python3</option>
+            <option value="riscv">RiscV</option>
+            <option value="rs">Racket</option>
+            <option value="sh">Bash</option>
+            <option value="spim">Spim</option>
           </Form.Select>
         </Form.Group>
 
