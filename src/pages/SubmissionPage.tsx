@@ -39,7 +39,7 @@ const SubmissionPage = ({
     triggerUpdate();
   }
 
-  useEffect(updatePage, [updateTrigger]);
+  useEffect(updatePage, [updateTrigger, submission.status]);
 
   const { variant, title, message } = getVerdictInfo(submission.status);
 
