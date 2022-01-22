@@ -17,8 +17,20 @@ const SubmissionPage = ({
     getSubmissionCodeAsync(submissionId).then(setSourceCode);
   }, [submissionId]);
 
+  function isLoading() {
+    switch (submission.status) {
+      case "InQueue":
+      case "Pending":
+      case "Running":
+        return true;
+      default:
+        return false;
+    }
+  }
+
   function triggerUpdate() {
-    setTimeout(() => setUpdateTrigger(!updateTrigger), 1000);
+    if (isLoading())
+      setTimeout(() => setUpdateTrigger(!updateTrigger), 1000);
   }
 
   function updatePage() {
@@ -40,7 +52,7 @@ const SubmissionPage = ({
           <h3>{title}</h3>
           <p>{message}</p>
           {
-            title === "Em execução" &&
+            isLoading() &&
             <div className="flex justify-center">
               <Spinner animation="border" />
             </div>
