@@ -9,7 +9,7 @@ export class Problem {
     this.output = data.output || "";
     this.sampleInputs = sampleInputs.map((sampleInput: any) => new SampleInput(sampleInput))
     this.notes = data.notes || "";
-    this.contest = data.contest || ""
+    this.contestId = data.contestId || ""
     this.tags = data.tags || []
     this.tutorial = data.tutorial || ""
     this.timeLimit = data.timeLimit || 0
@@ -23,7 +23,7 @@ export class Problem {
   output: string;
   sampleInputs: SampleInput[];
   notes: string;
-  contest: string;
+  contestId: string;
   tags: string[];
   tutorial: string;
   timeLimit: number;

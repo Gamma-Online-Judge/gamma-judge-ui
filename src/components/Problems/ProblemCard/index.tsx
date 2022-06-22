@@ -11,7 +11,7 @@ const ProblemCard = ({ problem }: ProblemCardProps) => {
           <Card.Header as="h6">{problem.title}</Card.Header>
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted">
-              {problem.contest}
+              {problem.contestId}
             </Card.Subtitle>
             <div className="mv2">
               <div className="mt-3">
