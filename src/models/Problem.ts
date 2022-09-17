@@ -4,7 +4,7 @@ export class Problem {
     this.id = data._id || ""
     this.customId = data.customId || ""
     this.title = data.title || "";
-    this.statement = data.statement || "";
+    this.statment = data.statment || "";
     this.input = data.input || "";
     this.output = data.output || "";
     this.sampleInputs = sampleInputs.map((sampleInput: any) => new SampleInput(sampleInput))
@@ -18,7 +18,7 @@ export class Problem {
   id: string;
   customId: string;
   title: string;
-  statement: string;
+  statment: string;
   input: string;
   output: string;
   sampleInputs: SampleInput[];

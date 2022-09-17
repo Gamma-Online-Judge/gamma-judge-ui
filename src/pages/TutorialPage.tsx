@@ -9,6 +9,7 @@ const TutorialPage = ({ match }: RouteComponentProps<TutorialPageRouteParams>) =
     useEffect(() => {
         getProblemAsync(match.params.problemId).then(problem => setProblem(problem))
     }, [match.params.problemId])
+    
     return (
         <div>
             <Header />

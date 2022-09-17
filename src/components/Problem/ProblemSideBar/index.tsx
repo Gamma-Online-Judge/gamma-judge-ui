@@ -65,7 +65,7 @@ const ProblemSideBar = ({
       <hr className="" />
       <div>
         <h3> Ajuda </h3>
-        <Link to={`/tutorial/${problem.id}`}>
+        <Link to={`/tutorial/${problem.customId}`}>
           <Button className="mt-3" variant="outline-success">
             Tutorial
           </Button>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Card, Spinner } from "react-bootstrap";
+import { Alert, Card, Spinner } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
 import { getSubmissionAsync, getSubmissionCodeAsync } from "../actions/submissions";
 import Header from "../components/Header";
