@@ -1,15 +1,50 @@
-# Getting Started with Create React App
+# Gamma Online Judge UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Dependencies
 
-## Requirements 
+### Node
 
-### Node JS
-[Oficial site Node Js](https://nodejs.org/pt-br/)
-[Installing via terminal](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/)
+The node version used is 16. I'd suggest to install nvm using this [link](https://heynode.com/tutorial/install-nodejs-locally-nvm/) to manage node versions. After nvm installed, install Node 16 with this command:
 
-### Yarn 
-[Installing via terminal](https://linuxize.com/post/how-to-install-yarn-on-ubuntu-18-04/)
+```shell
+nvm install 16
+```
+
+### Yarn
+
+With node installed, we need to install yarn. Run the command:
+```shell
+npm install -g yarn
+```
+
+### Environment file:
+
+Add a file `.env` on root folder with the following format:
+```shell
+REACT_APP_API_BASE_URL= # Endpoint to Gamma Judge API
+```
+
+## Running
+
+First of all install all dependencies with:
+```shell
+yarn
+```
+
+Then start the application in watch mode with:
+```shell
+yarn start
+```
+
+## Running with docker
+
+Run the following command: 
+```shell
+docker compose up --build
+```
+> At docker version 23, compose is a docker plugin and theren't need to install docker-compose.
+
+> Some docker installations need a super user privilegies to run.
 
 ## Available Scripts
 
