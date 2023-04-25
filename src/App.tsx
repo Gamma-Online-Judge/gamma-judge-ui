@@ -7,6 +7,7 @@ import ProblemPage from './pages/ProblemPage'
 import ProblemsPage from "./pages/ProblemsPage";
 import SubmissionPage from "./pages/SubmissionPage";
 import TutorialPage from "./pages/TutorialPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/problem/:problemId" component={ProblemPage} />
       <Route path="/submission/:submissionId" component={SubmissionPage} />
       <Route path="/tutorial/:problemId" component={TutorialPage} />
+      <Route path="/signup" component={SignUpPage} />
     </Router>
   );
 }
