@@ -1,18 +1,62 @@
-import { useContext, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap"
-import { postLogin } from "../actions/login";
+import { useContext } from "react"; 
+import { Button, Card, FormControl, FormGroup } from "react-bootstrap"
 import Header from "../components/Header"
 import { AuthContext } from "../contexts/AuthContext";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+const DivLogin = styled.div`
+  border-style: outset;
+  width: 600px;
+  height: 300px;
+  background: #c6d9d0;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+`;
+
+const StyledFormGroup = styled(FormGroup)`
+  width: 90%;
+`
+
+const Title = styled.h1`
+  color: black;
+`
+
+const StyledButton = styled(Button)`
+  margin-bottom: 15px;
+  width: 50%
+`
 
 
 const LoginPage = () => {
   const {
     handleSubmit,
+    register,
   } = useForm();
   const auth = useContext(AuthContext)
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
   const onSubmit = (data: any) => {
     const {username, password} = data;
@@ -20,40 +64,35 @@ const LoginPage = () => {
   }
 
   return (
-    <div>
-      <Header />
-      <div className="container d-flex justify-content-center align-items-center" style={{ position: 'relative', minHeight: '80vh' }}>
-        <Card className="col-md-5 mx-auto">
-          <Card.Header>Login</Card.Header>
-          <Form style={{ margin: '1rem' }} onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group controlId="formEmail" className="mb-3">
-              <Form.Label>Nome de usuário</Form.Label>
-              <Form.Control
+    <Container>
+      <Header/>
+      <Content>
+        <DivLogin>
+          <Title>Entrar</Title>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <StyledFormGroup>
+              <FormControl
                 placeholder="Usuário"
-                value={username}
-                onChange={(e: any) => setUsername(e.target.value)}
+                {...register('username')}
               />
-            </Form.Group>
-            <Form.Group controlId="formPassword">
-              <Form.Label>Senha</Form.Label>
-              <Form.Control
-                type="password"
+            </StyledFormGroup>
+            <StyledFormGroup>
+              <FormControl
                 placeholder="Senha"
-                value={password}
-                onChange={(e: any) => setPassword(e.target.value)} />
-            </Form.Group>
-            <Button
+                type="password"
+                {...register("password")}
+                />
+            </StyledFormGroup>
+            <StyledButton
               variant="primary"
               type="submit"
-              style={{ marginTop: '1rem' }}
-              onClick={onSubmit}
             >
-              Submit
-            </Button>
+              Login
+            </StyledButton>
           </Form>
-        </Card>
-      </div>
-    </div>
+        </DivLogin>
+      </Content>
+    </Container>
   )
 }
 

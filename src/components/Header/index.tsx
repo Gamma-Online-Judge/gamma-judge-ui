@@ -1,4 +1,9 @@
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar as _Navbar } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const Navbar = styled(_Navbar)`
+    background-color: #243119
+`
 
 const Header = () => {
     return (
@@ -12,7 +17,8 @@ const Header = () => {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/contests">Contests</Nav.Link>
                     <Nav.Link href="/problems">Problems</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/login">Entrar</Nav.Link>
+                    <Nav.Link href="/signup">Cadastrar</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

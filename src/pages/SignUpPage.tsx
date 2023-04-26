@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Header from "../components/Header";
 import styled from "styled-components"
-import { FormControl, FormGroup, FormLabel, Button } from "react-bootstrap";
+import { FormControl, FormGroup, Button } from "react-bootstrap";
 import { createUser } from "../actions/user";
 
 const Container = styled.div`
@@ -15,10 +15,11 @@ const Content = styled.div`
   justify-content: center;
 `
 
-const DivLogin = styled.div`
+const DivSignup = styled.div`
+  border-style: outset;
   width: 600px;
-  height: 450px;
-  background: #D3D3D3;
+  height: 500px;
+  background: #c6d9d0;
   margin-top: 5%;
   border-radius: 10px;
   display: flex;
@@ -42,11 +43,12 @@ const StyledFormGroup = styled(FormGroup)`
 `
 
 const Title = styled.h1`
-
+  color: black;
 `
 
 const StyledButton = styled(Button)`
-
+  margin-bottom: 20px;
+  width: 50%
 `
 
 
@@ -69,7 +71,7 @@ const SignUpPage = () => {
     <Container>
       <Header/>
       <Content>
-        <DivLogin>
+        <DivSignup>
             <Title>Crie sua conta</Title>
             <Form onSubmit={handleSubmit(onSubmit)}>
               <StyledFormGroup>
@@ -104,7 +106,7 @@ const SignUpPage = () => {
                 Cadastrar
               </StyledButton>
             </Form>
-        </DivLogin>
+        </DivSignup>
       </Content>
     </Container>
   )

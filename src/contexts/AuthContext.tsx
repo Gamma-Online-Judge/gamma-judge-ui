@@ -7,6 +7,7 @@ interface IProps {
 
 interface IUser {
   token?: string;
+  username?: string;
 }
 
 interface IAuthContext extends IUser {
@@ -24,16 +25,12 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   async function authenticate(username: string, senha: string): Promise<IUser> {
-    const response = await postLogin(username, senha);
-
-    const payload = {
-      token: response?.token,
-      email: response?.email,
-    };
-
-    setUser(payload);
-    setUserLocalStorage(payload);
-    return response;
+     return await postLogin(username, senha).then(response => {
+      console.log(response);
+      return response;
+     }).catch(err => {
+      console.log(err);
+     });
   }
 
   useEffect(() => {
