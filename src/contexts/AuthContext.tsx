@@ -26,7 +26,8 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
 
   async function authenticate(username: string, senha: string): Promise<IUser> {
      return await postLogin(username, senha).then(response => {
-      console.log(response);
+      setUser(response)
+      setUserLocalStorage(response)
       return response;
      }).catch(err => {
       console.log(err);
@@ -37,7 +38,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
     async function loadUser() {
       const userLocalStorage = await getUserLocalStorage();
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
 
       if (userLocalStorage) {
         setUser(userLocalStorage);

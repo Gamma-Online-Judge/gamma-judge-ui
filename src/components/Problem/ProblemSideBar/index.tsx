@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Problem } from "../../../models/Problem";
 import TagBadge from "../../TagBadge";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const ProblemSideBar = ({
   isLoading,
@@ -12,10 +13,13 @@ const ProblemSideBar = ({
 }: ProblemSideBarProps) => {
   const [file, setFile] = useState<File | undefined>(undefined);
   const [language, setLanguage] = useState<string>("c");
+  const auth = useContext(AuthContext)
 
   return (
     <div className={`${className} pa3`}>
-      <Form>
+      {
+        auth.isAuthenticated? 
+        <Form>
         <h3> Envie seu código </h3>
         <hr className="" />
         <Form.Group>
@@ -61,7 +65,9 @@ const ProblemSideBar = ({
               "Enviar" : <Spinner size="sm" animation={"border"} />
           }
         </Button>
-      </Form>
+        </Form>
+        : <h2>Faça login para submeter a sua solução</h2>
+      }
       <hr className="" />
       <div>
         <h3> Ajuda </h3>

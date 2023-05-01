@@ -1,9 +1,10 @@
 import { useContext } from "react"; 
-import { Button, Card, FormControl, FormGroup } from "react-bootstrap"
+import { Button, FormControl, FormGroup } from "react-bootstrap"
 import Header from "../components/Header"
 import { AuthContext } from "../contexts/AuthContext";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -57,11 +58,17 @@ const LoginPage = () => {
     register,
   } = useForm();
   const auth = useContext(AuthContext)
+  const history = useHistory()
 
   const onSubmit = (data: any) => {
     const {username, password} = data;
     auth.authenticate(username, password);
+    goToHomePage();
   }
+
+  const goToHomePage = () => {
+    history.push('/');
+  };
 
   return (
     <Container>
