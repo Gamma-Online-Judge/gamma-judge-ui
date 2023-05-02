@@ -26,7 +26,7 @@ const ProblemsPage = () => {
   }, [page]);
 
   useEffect(() => {
-    const contestsIds = problems.map((problem) => problem.contest);
+    const contestsIds = problems.map((problem) => problem.contestId);
     getContestsAsync(contestsIds).then((contests) => {
       const arr = contests.map((contest) => [
         contest.customId,
@@ -64,7 +64,7 @@ const ProblemsPage = () => {
             <tbody>
               {problems.map((problem, i) => {
                 const contestInfo =
-                  contestsMap.get(problem.contest) || new Contest();
+                  contestsMap.get(problem.contestId) || new Contest();
                 return (
                   <tr key={i}>
                     <td>{problem.customId}</td>

@@ -13,7 +13,7 @@ const ProblemContent = ({ problem, className = "" }: ProblemContentProps) => {
                 </div>
                 <hr />
                 <div className="mv3">
-                    <Latex>{problem.statement}</Latex>
+                    <Latex>{problem.statment}</Latex>
                 </div>
                 <div className="mv3">
                     <h5>Entrada</h5>

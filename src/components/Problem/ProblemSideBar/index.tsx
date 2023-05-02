@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Problem } from "../../../models/Problem";
 import TagBadge from "../../TagBadge";
 
 const ProblemSideBar = ({
+  isLoading,
   problem,
-  onSubmit = () => {},
+  onSubmit = () => { },
   className = "",
 }: ProblemSideBarProps) => {
   const [file, setFile] = useState<File | undefined>(undefined);
-  const [language, setLanguage] = useState<string>("C");
+  const [language, setLanguage] = useState<string>("c");
 
   return (
     <div className={`${className} pa3`}>
@@ -26,8 +27,18 @@ const ProblemSideBar = ({
             onChange={(e: any) => setLanguage(e.target.value)}
           >
             <option value="c">C</option>
-            <option value="c++">C++</option>
-            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="go">Go</option>
+            <option value="java">Java</option>
+            <option value="js">JavaScript</option>
+            <option value="ml">ML</option>
+            <option value="pas">Pascal</option>
+            <option value="py2">Python2</option>
+            <option value="py3">Python3</option>
+            <option value="riscv">RiscV</option>
+            <option value="rs">Racket</option>
+            <option value="sh">Bash</option>
+            <option value="spim">Spim</option>
           </Form.Select>
         </Form.Group>
 
@@ -40,17 +51,21 @@ const ProblemSideBar = ({
         </Form.Group>
 
         <Button
+          disabled={isLoading}
           className="mt-3"
           variant="primary"
           onClick={() => onSubmit(language, file)}
         >
-          Enviar
+          {
+            !isLoading ?
+              "Enviar" : <Spinner size="sm" animation={"border"} />
+          }
         </Button>
       </Form>
       <hr className="" />
       <div>
         <h3> Ajuda </h3>
-        <Link to={`/tutorial/${problem.id}`}>
+        <Link to={`/tutorial/${problem.customId}`}>
           <Button className="mt-3" variant="outline-success">
             Tutorial
           </Button>
@@ -71,6 +86,7 @@ const ProblemSideBar = ({
 export default ProblemSideBar;
 
 type ProblemSideBarProps = {
+  isLoading: boolean;
   problem: Problem;
   className?: string;
   onSubmit?: (language: string, file: File | undefined) => void;

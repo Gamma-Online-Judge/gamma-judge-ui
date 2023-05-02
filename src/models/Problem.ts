@@ -4,12 +4,16 @@ export class Problem {
     this.id = data._id || ""
     this.customId = data.customId || ""
     this.title = data.title || "";
-    this.statement = data.statement || "";
+    this.statment = data.statment || "";
     this.input = data.input || "";
     this.output = data.output || "";
     this.sampleInputs = sampleInputs.map((sampleInput: any) => new SampleInput(sampleInput))
     this.notes = data.notes || "";
+<<<<<<< HEAD
     this.contest = data.contestId || ""
+=======
+    this.contestId = data.contestId || ""
+>>>>>>> cfbec9d215bee51239e67d80f68cf8ee92b4c20f
     this.tags = data.tags || []
     this.tutorial = data.tutorial || ""
     this.timeLimit = data.timeLimit || 0
@@ -18,12 +22,12 @@ export class Problem {
   id: string;
   customId: string;
   title: string;
-  statement: string;
+  statment: string;
   input: string;
   output: string;
   sampleInputs: SampleInput[];
   notes: string;
-  contest: string;
+  contestId: string;
   tags: string[];
   tutorial: string;
   timeLimit: number;

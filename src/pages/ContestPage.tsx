@@ -38,7 +38,7 @@ const ContestPage = ({
 
   useEffect(() => {
     const customIds = Array.from(problemsMap.values()).map(
-      (problem) => problem.contest
+      (problem) => problem.contestId
     );
     getContestsAsync(customIds).then((contests) => {
       const arr = contests.map((contest) => [
@@ -75,7 +75,7 @@ const ContestPage = ({
                 const problemInfo =
                   problemsMap.get(contestProblem.customId) || new Problem();
                 const contestInfo =
-                  contestsMap.get(problemInfo.contest) || new Contest();
+                  contestsMap.get(problemInfo.contestId) || new Contest();
                 return (
                   <tr key={i}>
                     <td>
@@ -99,7 +99,7 @@ const ContestPage = ({
                       ))}
                     </td>
                     <td>
-                      {problemInfo.contest === contest.customId ? (
+                      {problemInfo.contestId === contest.customId ? (
                         <div>Problema original deste evento</div>
                       ) : (
                         <div className="d-grid gap-2">
