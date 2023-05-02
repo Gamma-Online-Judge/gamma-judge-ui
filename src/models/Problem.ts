@@ -9,11 +9,7 @@ export class Problem {
     this.output = data.output || "";
     this.sampleInputs = sampleInputs.map((sampleInput: any) => new SampleInput(sampleInput))
     this.notes = data.notes || "";
-<<<<<<< HEAD
-    this.contest = data.contestId || ""
-=======
     this.contestId = data.contestId || ""
->>>>>>> cfbec9d215bee51239e67d80f68cf8ee92b4c20f
     this.tags = data.tags || []
     this.tutorial = data.tutorial || ""
     this.timeLimit = data.timeLimit || 0
