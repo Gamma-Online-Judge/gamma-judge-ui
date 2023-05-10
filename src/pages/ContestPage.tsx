@@ -88,7 +88,7 @@ const ContestPage = ({
                           to={`/problem/${problemInfo.customId}`}
                         >
                           <Button className="tl" variant="outline-success">
-                            {problemInfo.title}
+                            {problemInfo.pt_BR.title}
                           </Button>
                         </Link>
                       </div>

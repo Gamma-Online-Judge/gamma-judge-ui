@@ -8,7 +8,7 @@ const ProblemCard = ({ problem }: ProblemCardProps) => {
     <Link to={`/problem/${problem.id}`}>
       <a style={{ cursor: "pointer" }}>
         <Card className="ma2">
-          <Card.Header as="h6">{problem.title}</Card.Header>
+          <Card.Header as="h6">{problem.pt_BR.title}</Card.Header>
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted">
               {problem.contestId}

@@ -15,8 +15,8 @@ const TutorialPage = ({ match }: RouteComponentProps<TutorialPageRouteParams>) =
             <Header />
             <div className="pa3">
                 <div className="pv2">
-                    <h1>{problem.title}</h1>
-                    <p>{problem.tutorial}</p>
+                    <h1>{problem.pt_BR.title}</h1>
+                    <p>{atob(problem.pt_BR.tutorial)}</p>
                 </div>
             </div>
         </div>
