@@ -27,6 +27,7 @@ const ContestPage = ({
 
   useEffect(() => {
     const customIds = contest.problems.map((problem) => problem.customId);
+    console.log(contest);
     getProblemsAsync(customIds).then((problems) => {
       const arr = problems.map((problem) => [
         problem.customId,

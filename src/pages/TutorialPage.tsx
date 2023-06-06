@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { getProblemAsync } from "../actions/problem";
 import Header from "../components/Header";
 import { Problem } from "../models/Problem";
+import Latex from "react-latex-next";
 
 const TutorialPage = ({ match }: RouteComponentProps<TutorialPageRouteParams>) => {
     const [problem, setProblem] = useState(new Problem({}))
@@ -16,7 +17,7 @@ const TutorialPage = ({ match }: RouteComponentProps<TutorialPageRouteParams>) =
             <div className="pa3">
                 <div className="pv2">
                     <h1>{problem.pt_BR.title}</h1>
-                    <p>{atob(problem.pt_BR.tutorial)}</p>
+                    <Latex>{atob(problem.pt_BR.tutorial)}</Latex>
                 </div>
             </div>
         </div>

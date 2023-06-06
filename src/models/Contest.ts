@@ -16,7 +16,7 @@ export class Contest {
 
 export class ContestProblem {
     constructor(data: any = {}) {
-        this.customId = data.problemId || ''
+        this.customId = data.customId || ''
         this.identifier = data.identifier || ''
     }
     toString() { // To use sort

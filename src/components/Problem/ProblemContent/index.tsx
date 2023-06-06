@@ -3,6 +3,7 @@ import Latex from 'react-latex-next'
 import SampleInputCart from './SampleInputCard';
 
 const ProblemContent = ({ problem, className = "" }: ProblemContentProps) => {
+    console.log(atob(problem.pt_BR.statement));
     return (
         <div className={`${className} ph5 pv3`}>
             <div className="pv2">
@@ -11,7 +12,7 @@ const ProblemContent = ({ problem, className = "" }: ProblemContentProps) => {
                     <h5><small className="gray">Limite de tempo: {problem.timeLimit}ms </small></h5>
                     <h5><small className="gray">Limite de memória: {problem.timeLimit} bytes </small></h5>
                 </div>
-                <hr />
+                <hr/>
                 <div className="mv3">
                     <Latex strict>{atob(problem.pt_BR.statement)}</Latex>
                 </div>
