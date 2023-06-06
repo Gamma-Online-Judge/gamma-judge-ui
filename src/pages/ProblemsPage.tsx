@@ -74,7 +74,7 @@ const ProblemsPage = () => {
                         to={`/problem/${problem.customId}`}
                       >
                         <Button className="tl" variant="outline-success">
-                          {problem.title}
+                          {problem.pt_BR.title}
                         </Button>
                       </Link>
                     </td>

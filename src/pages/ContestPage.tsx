@@ -27,6 +27,7 @@ const ContestPage = ({
 
   useEffect(() => {
     const customIds = contest.problems.map((problem) => problem.customId);
+    console.log(contest);
     getProblemsAsync(customIds).then((problems) => {
       const arr = problems.map((problem) => [
         problem.customId,
@@ -88,7 +89,7 @@ const ContestPage = ({
                           to={`/problem/${problemInfo.customId}`}
                         >
                           <Button className="tl" variant="outline-success">
-                            {problemInfo.title}
+                            {problemInfo.pt_BR.title}
                           </Button>
                         </Link>
                       </div>

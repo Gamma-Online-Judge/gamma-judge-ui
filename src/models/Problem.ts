@@ -3,31 +3,21 @@ export class Problem {
     const sampleInputs = data.sampleInputs || []
     this.id = data._id || ""
     this.customId = data.customId || ""
-    this.title = data.title || "";
-    this.statment = data.statment || "";
-    this.input = data.input || "";
-    this.output = data.output || "";
     this.sampleInputs = sampleInputs.map((sampleInput: any) => new SampleInput(sampleInput))
-    this.notes = data.notes || "";
     this.contestId = data.contestId || ""
     this.tags = data.tags || []
-    this.tutorial = data.tutorial || ""
     this.timeLimit = data.timeLimit || 0
     this.memoryLimit = data.memoryLimit || 0
+    this.pt_BR = new LanguageProblemData(data.pt_BR);
   }
   id: string;
   customId: string;
-  title: string;
-  statment: string;
-  input: string;
-  output: string;
   sampleInputs: SampleInput[];
-  notes: string;
   contestId: string;
   tags: string[];
-  tutorial: string;
   timeLimit: number;
   memoryLimit: number;
+  pt_BR: LanguageProblemData;
 }
 
 export class SampleInput {
@@ -35,6 +25,23 @@ export class SampleInput {
     this.input = data.input || "";
     this.output = data.output || ""
   }
+  input: string;
+  output: string;
+}
+
+export class LanguageProblemData {
+  constructor(data: any = {}) {
+    this.title = data.title || "";
+    this.statement = data.statement || "";
+    this.input = data.input || "";
+    this.output = data.output || "";
+    this.tutorial = data.tutorial || ""
+    this.notes = data.notes || "";
+  };
+  notes: string;
+  tutorial: string;
+  title: string;
+  statement: string;
   input: string;
   output: string;
 }
