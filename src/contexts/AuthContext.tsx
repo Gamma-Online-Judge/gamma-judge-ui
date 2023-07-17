@@ -5,8 +5,9 @@ interface IProps {
   children?: ReactNode;
 }
 
-interface IUser {
+export interface IUser {
   token?: string;
+  id?: string;
   username?: string;
 }
 
@@ -26,8 +27,14 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
 
   async function authenticate(username: string, senha: string): Promise<IUser> {
      return await postLogin(username, senha).then(response => {
-      setUser(response)
-      setUserLocalStorage(response)
+       const _user = {
+         token: response['token'],
+         username: response['user']['username'],
+         id: response['user']['id']
+        }
+        console.log(response, _user);
+      setUser(_user)
+      setUserLocalStorage(_user)
       return response;
      }).catch(err => {
       console.log(err);

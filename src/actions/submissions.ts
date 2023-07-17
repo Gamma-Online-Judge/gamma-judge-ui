@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Submission } from "../models/Submission";
 import { api } from "./axiosBase";
+import { AuthContext, IUser } from "../contexts/AuthContext";
 
 export const getSubmissionCodeAsync = async (id: string) => {
     const result = await api.get<string>(`/submissions/file/${id}`);
@@ -18,13 +20,18 @@ export const getAllSubmissionsAsync = async (limit: number, skip: number) => {
     return contestsData.map(data => new Submission(data))
 }
 
-export const submitCodeAsync = async (problemId: string, file: File, language: string, userId: string) => {
+export const submitCodeAsync = async (problemId: string, file: File, language: string, user: IUser | null) => {
     var data = new FormData();
+    console.log(user);
     data.append('Language', language);
     data.append('ProblemId', problemId);
     data.append('Files', file);
-    data.append('UserId', userId);
-    const result = await api.post(`/submissions`, data);
+    data.append('UserId', user?.id ?? '');
+    const result = await api.post(`/submissions`, data, {
+        headers:{
+            'Authorization': `Bearer ${user?.token}` 
+        }
+    });
     return new Submission(result.data);
 }
 
