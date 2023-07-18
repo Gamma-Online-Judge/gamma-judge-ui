@@ -26,7 +26,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   async function authenticate(username: string, senha: string): Promise<IUser> {
-     return await postLogin(username, senha).then(response => {
+     return postLogin(username, senha).then(response => {
        const _user = {
          token: response['token'],
          username: response['user']['username'],
@@ -37,7 +37,8 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
       setUserLocalStorage(_user)
       return response;
      }).catch(err => {
-      console.log(err);
+      console.log(err.response.statusText);
+      throw new Error('Usuário ou senha incorretos')
      });
   }
 

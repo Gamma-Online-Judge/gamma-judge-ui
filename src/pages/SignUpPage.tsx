@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import styled from "styled-components"
 import { FormControl, FormGroup, Button } from "react-bootstrap";
 import { createUser } from "../actions/user";
+import { ToastContainer, toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -57,14 +59,15 @@ const SignUpPage = () => {
     handleSubmit, register
   } = useForm()
 
+  const history = useHistory();
+
   const onSubmit = (data: any) => {
-    console.log(data)
     createUser(data).then(
       response => {
-        console.log(response)
+          history.push('/login')
       }
     ).catch(err => {
-      console.log(err)
+      alert(err)
     })
   }
   return (

@@ -8,6 +8,9 @@ interface IUser {
 }
 
 export const createUser = async (user: IUser): Promise<any> => {
-    const result = await api.post(`/user`, user);
-    return result.data;
+    return api.post(`/user`, user).then(res => {
+        return res.data;
+    }).catch(err => {
+        throw new Error(err.response.statusText);
+    });
 }

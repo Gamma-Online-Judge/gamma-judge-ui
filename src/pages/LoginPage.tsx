@@ -62,8 +62,11 @@ const LoginPage = () => {
 
   const onSubmit = (data: any) => {
     const {username, password} = data;
-    auth.authenticate(username, password);
-    goToHomePage();
+    auth.authenticate(username, password).then(() => {
+        goToHomePage();
+    }).catch(err => {
+      alert(err)
+    });
   }
 
   const goToHomePage = () => {
